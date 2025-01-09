@@ -13,7 +13,16 @@
             "fileVersion": "1.11.72.0"
           }
         }
-      }
+      },
+      "Selenium.WebDriver/4.27.0": {
+        "runtime": {
+          "lib/net8.0/WebDriver.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "4.0.0.0"
+          }
+        }
+      },
+      "Selenium.WebDriver.ChromeDriver/131.0.6778.26400": {}
     }
   },
   "libraries": {
@@ -23,6 +32,20 @@
       "sha512": "sha512-RNLgXxTFdIGFI+o5l8c2aJ2L5StIRn9Uv8HKR76p7QP4ZUL26wzpWUCWh08xWUdkL2kocl+Xhv6VUu0rA1npVg==",
       "path": "htmlagilitypack/1.11.72",
       "hashPath": "htmlagilitypack.1.11.72.nupkg.sha512"
+    },
+    "Selenium.WebDriver/4.27.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-bMIpqwpBfYLa1lh8gPVa6A1i9LeWNsfc2mR9why0DutEKI7ck3GVxzco1bB/8bv+7IA6rk4sR9WpZLRUnH/AAw==",
+      "path": "selenium.webdriver/4.27.0",
+      "hashPath": "selenium.webdriver.4.27.0.nupkg.sha512"
+    },
+    "Selenium.WebDriver.ChromeDriver/131.0.6778.26400": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-4gM8ZYbQe+44x7Vw5FfLeGjnap/EwIItQDWcm+wnpDT7JjOBM/5uFUvdBQ7aC7En+4lecP9ZjpyWu23o/hwgww==",
+      "path": "selenium.webdriver.chromedriver/131.0.6778.26400",
+      "hashPath": "selenium.webdriver.chromedriver.131.0.6778.26400.nupkg.sha512"
     }
   }
 }
