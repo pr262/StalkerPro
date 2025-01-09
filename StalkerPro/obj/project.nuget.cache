@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "6J/nXZyH0ZZLtq84QkVqZhGija9K1mUlohjz7p2uEu7ER1YpjrAdIUhyfo98AGB4fuk63LjX/S6b93/hBq6V3A==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\elliot.poggirosenbe\\source\\repos\\StalkerPro\\StalkerPro\\StalkerPro.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\elliot.poggirosenbe\\.nuget\\packages\\htmlagilitypack\\1.11.72\\htmlagilitypack.1.11.72.nupkg.sha512"
+  ],
+  "logs": []
+}
