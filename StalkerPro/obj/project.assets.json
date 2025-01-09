@@ -14,6 +14,28 @@
             "related": ".deps.json;.pdb;.xml"
           }
         }
+      },
+      "Selenium.WebDriver/4.27.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/WebDriver.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/WebDriver.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/Selenium.WebDriver.targets": {}
+        }
+      },
+      "Selenium.WebDriver.ChromeDriver/131.0.6778.26400": {
+        "type": "package",
+        "build": {
+          "build/Selenium.WebDriver.ChromeDriver.targets": {}
+        }
       }
     }
   },
@@ -66,31 +88,79 @@
         "lib/uap10.0/HtmlAgilityPack.pri",
         "readme.md"
       ]
+    },
+    "Selenium.WebDriver/4.27.0": {
+      "sha512": "bMIpqwpBfYLa1lh8gPVa6A1i9LeWNsfc2mR9why0DutEKI7ck3GVxzco1bB/8bv+7IA6rk4sR9WpZLRUnH/AAw==",
+      "type": "package",
+      "path": "selenium.webdriver/4.27.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "build/Selenium.WebDriver.targets",
+        "buildTransitive/Selenium.WebDriver.targets",
+        "icon.png",
+        "lib/net8.0/WebDriver.dll",
+        "lib/net8.0/WebDriver.xml",
+        "lib/netstandard2.0/WebDriver.dll",
+        "lib/netstandard2.0/WebDriver.xml",
+        "manager/linux/selenium-manager",
+        "manager/macos/selenium-manager",
+        "manager/windows/selenium-manager.exe",
+        "selenium.webdriver.4.27.0.nupkg.sha512",
+        "selenium.webdriver.nuspec"
+      ]
+    },
+    "Selenium.WebDriver.ChromeDriver/131.0.6778.26400": {
+      "sha512": "4gM8ZYbQe+44x7Vw5FfLeGjnap/EwIItQDWcm+wnpDT7JjOBM/5uFUvdBQ7aC7En+4lecP9ZjpyWu23o/hwgww==",
+      "type": "package",
+      "path": "selenium.webdriver.chromedriver/131.0.6778.26400",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "build/DefinePropertiesChromeDriver.targets",
+        "build/Selenium.WebDriver.ChromeDriver.targets",
+        "driver/linux64/LICENSE.chromedriver",
+        "driver/linux64/chromedriver",
+        "driver/mac64/LICENSE.chromedriver",
+        "driver/mac64/chromedriver",
+        "driver/mac64arm/LICENSE.chromedriver",
+        "driver/mac64arm/chromedriver",
+        "driver/win32/LICENSE.chromedriver",
+        "driver/win32/chromedriver.exe",
+        "nupkg-icon.png",
+        "selenium.webdriver.chromedriver.131.0.6778.26400.nupkg.sha512",
+        "selenium.webdriver.chromedriver.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
     "net8.0-windows7.0": [
-      "HtmlAgilityPack >= 1.11.72"
+      "HtmlAgilityPack >= 1.11.72",
+      "Selenium.WebDriver >= 4.27.0",
+      "Selenium.WebDriver.ChromeDriver >= 131.0.6778.26400"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\elliot.poggirosenbe\\.nuget\\packages\\": {},
+    "C:\\Users\\wdani\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\elliot.poggirosenbe\\source\\repos\\StalkerPro\\StalkerPro\\StalkerPro.csproj",
+      "projectUniqueName": "C:\\projects\\C#\\StalkerPro-main\\StalkerPro\\StalkerPro.csproj",
       "projectName": "StalkerPro",
-      "projectPath": "C:\\Users\\elliot.poggirosenbe\\source\\repos\\StalkerPro\\StalkerPro\\StalkerPro.csproj",
-      "packagesPath": "C:\\Users\\elliot.poggirosenbe\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\elliot.poggirosenbe\\source\\repos\\StalkerPro\\StalkerPro\\obj\\",
+      "projectPath": "C:\\projects\\C#\\StalkerPro-main\\StalkerPro\\StalkerPro.csproj",
+      "packagesPath": "C:\\Users\\wdani\\.nuget\\packages\\",
+      "outputPath": "C:\\projects\\C#\\StalkerPro-main\\StalkerPro\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\elliot.poggirosenbe\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\wdani\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -116,7 +186,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0-windows7.0": {
@@ -125,6 +196,14 @@
           "HtmlAgilityPack": {
             "target": "Package",
             "version": "[1.11.72, )"
+          },
+          "Selenium.WebDriver": {
+            "target": "Package",
+            "version": "[4.27.0, )"
+          },
+          "Selenium.WebDriver.ChromeDriver": {
+            "target": "Package",
+            "version": "[131.0.6778.26400, )"
           }
         },
         "imports": [
@@ -146,7 +225,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.401/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

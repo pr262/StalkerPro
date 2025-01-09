@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "6J/nXZyH0ZZLtq84QkVqZhGija9K1mUlohjz7p2uEu7ER1YpjrAdIUhyfo98AGB4fuk63LjX/S6b93/hBq6V3A==",
+  "dgSpecHash": "sxnrbfNgWko=",
   "success": true,
-  "projectFilePath": "C:\\Users\\elliot.poggirosenbe\\source\\repos\\StalkerPro\\StalkerPro\\StalkerPro.csproj",
+  "projectFilePath": "C:\\projects\\C#\\StalkerPro-main\\StalkerPro\\StalkerPro.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\elliot.poggirosenbe\\.nuget\\packages\\htmlagilitypack\\1.11.72\\htmlagilitypack.1.11.72.nupkg.sha512"
+    "C:\\Users\\wdani\\.nuget\\packages\\htmlagilitypack\\1.11.72\\htmlagilitypack.1.11.72.nupkg.sha512",
+    "C:\\Users\\wdani\\.nuget\\packages\\selenium.webdriver\\4.27.0\\selenium.webdriver.4.27.0.nupkg.sha512",
+    "C:\\Users\\wdani\\.nuget\\packages\\selenium.webdriver.chromedriver\\131.0.6778.26400\\selenium.webdriver.chromedriver.131.0.6778.26400.nupkg.sha512"
   ],
   "logs": []
 }

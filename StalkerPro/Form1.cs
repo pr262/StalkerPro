@@ -3,6 +3,8 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HtmlAgilityPack;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace StalkerPro
@@ -19,47 +21,97 @@ namespace StalkerPro
             txtLog.AppendText(message + Environment.NewLine);
         }
 
-        private async void button1_Click(object sender, EventArgs e)
+        private async void btnSearch_Click(object sender, EventArgs e)
         {
-            string url = txtUrl.Text;
+            string firstName = txtFirstName.Text.Trim();
+            string lastName = txtLastName.Text.Trim();
+            string location = txtLocation.Text.Trim();
+            int minAge = (int)numMinAge.Value;
+            int maxAge = (int)numMaxAge.Value;
 
-            if (string.IsNullOrWhiteSpace(url))
+            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
             {
-                Debug("Ange en giltig URL.");
+                Debug("Förnamn och efternamn är obligatoriska.");
                 return;
             }
 
             try
             {
-                using (HttpClient client = new HttpClient())
-                {
-                    // Hämta HTML
-                    string htmlContent = await client.GetStringAsync(url);
-                    Debug("Lyckades hämta HTML");
+                var options = new ChromeOptions();
+                options.AddArgument("--headless"); // Kör utan GUI
+                options.AddArgument("--disable-gpu");
+                options.AddArgument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
 
-                    // Ladda HTML i HtmlAgilityPack
+                using (var driver = new ChromeDriver(options))
+                {
+                    // Build the URL dynamically, including empty parameters
+                    string searchUrl = $"https://www.ratsit.se/sok/person?" +
+                                       $"fnamn={Uri.EscapeDataString(firstName)}" +
+                                       $"&enamn={Uri.EscapeDataString(lastName)}" +
+                                       $"&gata=" + // Empty parameter
+                                       $"&postnr=" + // Empty parameter
+                                       $"&ort=" + // Empty parameter
+                                       $"&kn={Uri.EscapeDataString(location)}" +
+                                       $"&pnr=" + // Empty parameter
+                                       $"&tfn=" + // Empty parameter
+                                       $"&m=0" +  // Default parameter
+                                       $"&k=0" +  // Default parameter
+                                       $"&r=0" +  // Default parameter
+                                       $"&er=0" + // Default parameter
+                                       $"&b=0" +  // Default parameter
+                                       $"&eb=0" + // Default parameter
+                                       $"&amin={minAge}" +
+                                       $"&amax={maxAge}" +
+                                       $"&fon=1" + // Default parameter
+                                       $"&page=1"; // Default pagination
+
+                    Debug($"Söker på URL: {searchUrl}");
+                    driver.Navigate().GoToUrl(searchUrl);
+
+                    // Hitta och klicka på knappen för att godkänna cookies
+                    try
+                    {
+                        var acceptButton = driver.FindElement(By.Id("CybotCookiebotDialogBodyLevelButtonLevelOptinAllowAll"));
+                        acceptButton.Click();
+                        Debug("Godkände cookies.");
+                    }
+                    catch (NoSuchElementException)
+                    {
+                        Debug("Hittade ingen Cookie Consent-knapp. Fortsätter ändå...");
+                    }
+
+                    // Vänta tills sidan laddas
+                    System.Threading.Thread.Sleep(2000);
+
+                    // Hämta sidans HTML
+                    string htmlContent = driver.PageSource;
+                    Debug("Lyckades hämta HTML efter cookie-godkännande.");
+
+                    // Bearbeta HTML med HtmlAgilityPack
                     HtmlDocument htmlDoc = new HtmlDocument();
                     htmlDoc.LoadHtml(htmlContent);
-                    Debug("Lyckades ladda in HTML fil i dokument");
 
-                    // Exempel: Hämta alla länkar
-                    var links = htmlDoc.DocumentNode.SelectNodes("//a[@href]");
-                    if (links != null)
+                    // Hämta länkar till personprofiler
+                    var profileLinks = htmlDoc.DocumentNode.SelectNodes("//ul[contains(@class, 'search-result-list')]//li//a[@href]");
+                    if (profileLinks == null || profileLinks.Count == 0)
                     {
-                        Debug("Hittade länkar");
-                        lstResults.Items.Clear();
-                        Debug("Rensade listan");
-                        foreach (var link in links)
-                        {
-                            string href = link.Attributes["href"].Value;
-                            lstResults.Items.Add(href);
-                            Debug("Hittade en länk: " + href);
-                        }
+                        Debug($"Inga relevanta länkar hittades för \"{firstName} {lastName}\".");
+                        return;
                     }
-                    else
+
+                    lstResults.Items.Clear();
+                    foreach (var link in profileLinks)
                     {
-                        MessageBox.Show("Inga länkar hittades.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        Debug("Inga länkar hittades.");
+                        string href = link.Attributes["href"].Value;
+
+                        // Kontrollera om länken är absolut eller relativ
+                        if (!href.StartsWith("http"))
+                        {
+                            href = "https://www.ratsit.se" + href;
+                        }
+
+                        lstResults.Items.Add(href);
+                        Debug($"Hittade personlänk: {href}");
                     }
                 }
             }
@@ -69,5 +121,6 @@ namespace StalkerPro
                 Debug($"Ett fel inträffade: {ex.Message}");
             }
         }
+
     }
 }
