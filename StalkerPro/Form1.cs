@@ -1,10 +1,12 @@
 using System;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using HtmlAgilityPack;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using System.Text.RegularExpressions;
 using HtmlDocument = HtmlAgilityPack.HtmlDocument;
 
 namespace StalkerPro
@@ -21,6 +23,23 @@ namespace StalkerPro
             txtLog.AppendText(message + Environment.NewLine);
         }
 
+        public int GetAge(string personalNumber)
+        {
+            // Hämta födelsedatum från personnummer
+            string birthDate = personalNumber.Substring(0, 8);
+            int year = int.Parse(birthDate.Substring(0, 4));
+            int month = int.Parse(birthDate.Substring(4, 2));
+            int day = int.Parse(birthDate.Substring(6, 2));
+
+            // Beräkna ålder
+            DateTime birth = new DateTime(year, month, day);
+            DateTime today = DateTime.Today;
+            int age = today.Year - birth.Year;
+            if (birth > today.AddYears(-age)) age--;
+
+            return age;
+        }
+
         private async void btnSearch_Click(object sender, EventArgs e)
         {
             string firstName = txtFirstName.Text.Trim();
@@ -29,9 +48,9 @@ namespace StalkerPro
             int minAge = (int)numMinAge.Value;
             int maxAge = (int)numMaxAge.Value;
 
-            if (string.IsNullOrWhiteSpace(firstName) || string.IsNullOrWhiteSpace(lastName))
+            if (string.IsNullOrWhiteSpace(firstName))
             {
-                Debug("Förnamn och efternamn är obligatoriska.");
+                Debug("Förnamn är obligatoriskt.");
                 return;
             }
 
@@ -64,6 +83,57 @@ namespace StalkerPro
                                        $"&amax={maxAge}" +
                                        $"&fon=1" + // Default parameter
                                        $"&page=1"; // Default pagination
+
+                    /* DETTA SKALL LÄGGAS IN SNART
+                    int currentPage = 1;
+
+while (true)
+{
+    // Bygg URL med aktuell sida
+    string searchUrl = $"https://www.ratsit.se/sok/person?" +
+                       $"fnamn={Uri.EscapeDataString(firstName)}" +
+                       $"&enamn={Uri.EscapeDataString(lastName)}" +
+                       $"&kn={Uri.EscapeDataString(location)}" +
+                       $"&amin={minAge}&amax={maxAge}&fon=1&page={currentPage}";
+
+    Debug($"Söker på URL: {searchUrl}");
+    driver.Navigate().GoToUrl(searchUrl);
+
+    // Vänta tills sidan laddas
+    System.Threading.Thread.Sleep(2000);
+
+    // Hämta sidans HTML
+    string htmlContent = driver.PageSource;
+
+    // Kontrollera om det finns resultat
+    HtmlDocument htmlDoc = new HtmlDocument();
+    htmlDoc.LoadHtml(htmlContent);
+
+    var profileLinks = htmlDoc.DocumentNode.SelectNodes("//ul[contains(@class, 'search-result-list')]//li//a[@href]");
+    if (profileLinks == null || profileLinks.Count == 0)
+    {
+        Debug("Inga fler resultat. Avslutar sökningen.");
+        break;
+    }
+
+    // Processa länkarna
+    foreach (var link in profileLinks)
+    {
+        string href = link.Attributes["href"].Value;
+
+        if (!href.StartsWith("http"))
+        {
+            href = "https://www.ratsit.se" + href;
+        }
+
+        Debug($"Hittade länk: {href}");
+    }
+
+    // Öka sidräknaren
+    currentPage++;
+}
+
+                    */
 
                     Debug($"Söker på URL: {searchUrl}");
                     driver.Navigate().GoToUrl(searchUrl);
@@ -99,6 +169,7 @@ namespace StalkerPro
                         return;
                     }
 
+                    int i = 0;
                     lstResults.Items.Clear();
                     foreach (var link in profileLinks)
                     {
@@ -110,8 +181,37 @@ namespace StalkerPro
                             href = "https://www.ratsit.se" + href;
                         }
 
+                        if (href.Contains("bolagsfakta.se")) { continue;}
+                        if (href.Contains("ratsit.se/kop/kassa")) { continue;}
+
+                        // Innan du lägger till länken i listan:
+                        var match = Regex.Match(href, @"ratsit\.se\/(\d{8})-");
+                        if (!match.Success)
+                        {
+                            Debug("Ignorerar företagslänk: " + href);
+                            continue;
+                        }
+
+                        // Använd det extraherade personnumret
+                        string personalNumber = match.Groups[1].Value;
+                        int age = GetAge(personalNumber);
+                        Debug($"Extraherade personnummer: {personalNumber}, Ålder: {age}");
+
+                        // Kontrollera om åldern är inom intervallet
+                        if (age < minAge || age > maxAge) {
+                            
+                            Debug($"Ignorerar personlänk: {href}, Ålder: {age}. Max ålder som används " + maxAge + " minimum ålder " + minAge);
+                            continue; }
+
+                        i++;
+
                         lstResults.Items.Add(href);
                         Debug($"Hittade personlänk: {href}");
+
+                        // Hämta personuppgifter
+                        person person = new person("", "", "", "", "", href);
+
+                        Debug("person " + i +": " + person.Url);
                     }
                 }
             }
@@ -122,5 +222,25 @@ namespace StalkerPro
             }
         }
 
+    }
+
+    public class person
+    {
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
+        public string Age { get; set; }
+        public string Location { get; set; }
+        public string Url { get; set; }
+
+        public person (string name, string address, string phone, string age, string location, string url)
+        {
+            Name = name;
+            Address = address;
+            Phone = phone;
+            Age = age;
+            Location = location;
+            Url = url;
+        }
     }
 }

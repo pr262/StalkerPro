@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("StalkerPro")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9620a64a6f980dbdb40323956159047b08bc569b")]
 [assembly: System.Reflection.AssemblyProductAttribute("StalkerPro")]
 [assembly: System.Reflection.AssemblyTitleAttribute("StalkerPro")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

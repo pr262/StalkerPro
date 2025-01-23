@@ -40,3 +40,8 @@ C:\projects\C#\StalkerPro-main\StalkerPro\bin\Debug\net8.0-windows\selenium-mana
 C:\projects\C#\StalkerPro-main\StalkerPro\bin\Debug\net8.0-windows\selenium-manager\macos\selenium-manager
 C:\projects\C#\StalkerPro-main\StalkerPro\bin\Debug\net8.0-windows\selenium-manager\windows\selenium-manager.exe
 C:\projects\C#\StalkerPro-main\StalkerPro\bin\Debug\net8.0-windows\WebDriver.dll
+C:\Users\elliot.poggirosenbe\source\repos\StalkerPro\StalkerPro\bin\Debug\net8.0-windows\selenium-manager\linux\selenium-manager
+C:\Users\elliot.poggirosenbe\source\repos\StalkerPro\StalkerPro\bin\Debug\net8.0-windows\selenium-manager\macos\selenium-manager
+C:\Users\elliot.poggirosenbe\source\repos\StalkerPro\StalkerPro\bin\Debug\net8.0-windows\selenium-manager\windows\selenium-manager.exe
+C:\Users\elliot.poggirosenbe\source\repos\StalkerPro\StalkerPro\bin\Debug\net8.0-windows\WebDriver.dll
+C:\Users\elliot.poggirosenbe\source\repos\StalkerPro\StalkerPro\obj\Debug\net8.0-windows\StalkerPro.sourcelink.json
