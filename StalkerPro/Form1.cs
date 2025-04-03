@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,11 +14,12 @@ namespace StalkerPro
         public Form1()
         {
             InitializeComponent();
+            // Tömmer och lägger till kolumner. Notera att kolumnen "Förnamn" har tagits bort.
+            dgvPeople.Columns.Clear();
             dgvPeople.Columns.Add("Personnamn", "Personnamn");
-            dgvPeople.Columns.Add("Förnamn", "Förnamn");
             dgvPeople.Columns.Add("Tilltalsnamn", "Tilltalsnamn");
             dgvPeople.Columns.Add("Efternamn", "Efternamn");
-            dgvPeople.Columns.Add("Mellannamn", "Mellannamn");
+            dgvPeople.Columns.Add("Personnummer", "Personnummer");
             dgvPeople.Columns.Add("URL", "Profil Länk");
         }
 
@@ -49,7 +49,11 @@ namespace StalkerPro
                 options.AddArgument("--disable-gpu");
                 options.AddArgument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
 
-                using (var driver = new ChromeDriver(options))
+                // Skapar en service för ChromeDriver med dolda kommandopromptfönster
+                var service = ChromeDriverService.CreateDefaultService();
+                service.HideCommandPromptWindow = true;
+
+                using (var driver = new ChromeDriver(service, options))
                 {
                     string searchUrl = $"https://www.ratsit.se/sok/person?" +
                                        $"fnamn={Uri.EscapeDataString(firstName)}" +
@@ -89,6 +93,7 @@ namespace StalkerPro
                         if (href.Contains("bolagsfakta.se") || href.Contains("ratsit.se/kop/kassa"))
                             continue;
 
+                        // Matcha personnumret (ex. 20071012) från URL:en
                         var match = Regex.Match(href, @"ratsit\.se\/(\d{8})-");
                         if (!match.Success) continue;
 
@@ -101,8 +106,9 @@ namespace StalkerPro
                         var details = ScrapePersonDetails(href);
                         if (details != null)
                         {
-                            Debug($"Lägger till i DataGridView: {details.Personnamn}, {details.Fornamn}, {details.Tilltalsnamn}, {details.Efternamn}, {details.Mellannamn}, {details.Url}");
-                            dgvPeople.Rows.Add(details.Personnamn, details.Fornamn, details.Tilltalsnamn, details.Efternamn, details.Mellannamn, details.Url);
+                            // Lägger till den extraherade personnumret istället för "Förnamn"
+                            Debug($"Lägger till i DataGridView: {details.Personnamn}, {details.Tilltalsnamn}, {details.Efternamn}, {personalNumber}, {details.Url}");
+                            dgvPeople.Rows.Add(details.Personnamn, details.Tilltalsnamn, details.Efternamn, personalNumber, details.Url);
                         }
                     }
                 }
@@ -121,7 +127,10 @@ namespace StalkerPro
             options.AddArgument("--disable-gpu");
             options.AddArgument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64)");
 
-            using (var driver = new ChromeDriver(options))
+            var service = ChromeDriverService.CreateDefaultService();
+            service.HideCommandPromptWindow = true;
+
+            using (var driver = new ChromeDriver(service, options))
             {
                 driver.Navigate().GoToUrl(url);
                 System.Threading.Thread.Sleep(3000);
@@ -132,18 +141,18 @@ namespace StalkerPro
                 Debug("HTML-snutt: " + (html.Length > 300 ? html.Substring(0, 300) : html));
 
                 string personnamn = ExtractValue(doc, "//p[span[contains(text(),'Personnamn:')]]", "Personnamn:");
-                string fornamn = ExtractValue(doc, "//p[span[contains(text(),'Förnamn:')]]", "Förnamn:");
+                // Tar bort förnamnsextraktion
+                // string fornamn = ExtractValue(doc, "//p[span[contains(text(),'Förnamn:')]]", "Förnamn:");
                 string tilltalsnamn = ExtractValue(doc, "//p[span[contains(text(),'Tilltalsnamn:')]]", "Tilltalsnamn:");
                 string efternamn = ExtractValue(doc, "//p[span[contains(text(),'Efternamn:')]]", "Efternamn:");
-                string mellannamn = ExtractValue(doc, "//p[span[contains(text(),'Mellannamn:')]]", "Mellannamn:");
+                // Mellannamn används inte längre
 
                 return new PersonDetails
                 {
                     Personnamn = personnamn,
-                    Fornamn = fornamn,
+                    // Förnamn tas inte med
                     Tilltalsnamn = tilltalsnamn,
                     Efternamn = efternamn,
-                    Mellannamn = mellannamn,
                     Url = url
                 };
             }
@@ -173,10 +182,10 @@ namespace StalkerPro
     public class PersonDetails
     {
         public string Personnamn { get; set; }
-        public string Fornamn { get; set; }
+        // Förnamn-egenskapen har tagits bort
         public string Tilltalsnamn { get; set; }
         public string Efternamn { get; set; }
-        public string Mellannamn { get; set; }
+        // Mellannamn används inte längre, vi använder personnummer istället
         public string Url { get; set; }
     }
 }
