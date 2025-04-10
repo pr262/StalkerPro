@@ -3,16 +3,24 @@
   "WorkspaceRootPath": "C:\\Projects\\StalkerPro\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|c:\\projects\\stalkerpro\\stalkerpro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|solutionrelative:stalkerpro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|c:\\projects\\stalkerpro\\stalkerpro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|solutionrelative:stalkerpro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|c:\\projects\\stalkerpro\\stalkerpro\\stalkerpro.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "RelativeMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|solutionrelative:stalkerpro\\stalkerpro.csproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|c:\\projects\\stalkerpro\\stalkerpro\\stalkerpro.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|solutionrelative:stalkerpro\\stalkerpro.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|c:\\projects\\stalkerpro\\stalkerpro\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|solutionrelative:stalkerpro\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|C:\\Projects\\StalkerPro\\stalkerpro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|solutionrelative:stalkerpro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|c:\\projects\\stalkerpro\\stalkerpro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{74A612A0-C972-44B8-96FA-3C470F8D907E}|StalkerPro\\StalkerPro.csproj|solutionrelative:stalkerpro\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,21 +30,58 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "Form1.Designer.cs",
               "DocumentMoniker": "C:\\Projects\\StalkerPro\\StalkerPro\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "StalkerPro\\Form1.Designer.cs",
-              "ToolTip": "C:\\Projects\\StalkerPro\\StalkerPro\\Form1.Designer.cs",
-              "RelativeToolTip": "StalkerPro\\Form1.Designer.cs",
-              "ViewState": "AgIAAMgAAAAAAAAAAAAQwN8AAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Projects\\StalkerPro\\StalkerPro\\Form1.Designer.cs*",
+              "RelativeToolTip": "StalkerPro\\Form1.Designer.cs*",
+              "ViewState": "AgIAAMsAAAAAAAAAAAAlwNgAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-09T16:06:03.983Z",
               "IsPinned": true,
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "StalkerPro",
+              "DocumentMoniker": "C:\\Projects\\StalkerPro\\StalkerPro\\StalkerPro.csproj",
+              "RelativeDocumentMoniker": "StalkerPro\\StalkerPro.csproj",
+              "ToolTip": "C:\\Projects\\StalkerPro\\StalkerPro\\StalkerPro.csproj",
+              "RelativeToolTip": "StalkerPro\\StalkerPro.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-10T08:14:22.169Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "StalkerPro",
+              "DocumentMoniker": "C:\\Projects\\StalkerPro\\StalkerPro\\StalkerPro.csproj",
+              "RelativeDocumentMoniker": "StalkerPro\\StalkerPro.csproj",
+              "ToolTip": "C:\\Projects\\StalkerPro\\StalkerPro\\StalkerPro.csproj",
+              "RelativeToolTip": "StalkerPro\\StalkerPro.csproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-04-10T08:14:28.123Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Design]",
+              "DocumentMoniker": "C:\\Projects\\StalkerPro\\StalkerPro\\Form1.cs",
+              "RelativeDocumentMoniker": "StalkerPro\\Form1.cs",
+              "ToolTip": "C:\\Projects\\StalkerPro\\StalkerPro\\Form1.cs [Design]*",
+              "RelativeToolTip": "StalkerPro\\Form1.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-10T08:08:01.165Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Bookmark",
@@ -44,31 +89,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Form1.cs",
               "DocumentMoniker": "C:\\Projects\\StalkerPro\\StalkerPro\\Form1.cs",
               "RelativeDocumentMoniker": "StalkerPro\\Form1.cs",
-              "ToolTip": "C:\\Projects\\StalkerPro\\StalkerPro\\Form1.cs",
-              "RelativeToolTip": "StalkerPro\\Form1.cs",
-              "ViewState": "AgIAALQAAAAAAAAAAAAQwL8AAAAAAAAAAAAAAA==",
+              "ToolTip": "C:\\Projects\\StalkerPro\\StalkerPro\\Form1.cs*",
+              "RelativeToolTip": "StalkerPro\\Form1.cs*",
+              "ViewState": "AgIAAKoAAAAAAAAAAAAlwLQAAAAHAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-01-09T14:49:15.25Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Form1.cs [Design]",
-              "DocumentMoniker": "C:\\Projects\\StalkerPro\\StalkerPro\\Form1.cs",
-              "RelativeDocumentMoniker": "StalkerPro\\Form1.cs",
-              "ToolTip": "C:\\Projects\\StalkerPro\\StalkerPro\\Form1.cs [Design]",
-              "RelativeToolTip": "StalkerPro\\Form1.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-01-09T14:48:47.379Z"
             }
           ]
         }
