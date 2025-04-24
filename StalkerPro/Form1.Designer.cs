@@ -29,7 +29,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             txtFirstName = new TextBox();
-            button1 = new Button();
+            btnSearch = new Button();
             txtLog = new TextBox();
             txtLocation = new TextBox();
             numMaxAge = new NumericUpDown();
@@ -41,6 +41,7 @@
             label5 = new Label();
             txtLastName = new TextBox();
             dgvPeople = new DataGridView();
+            progressBar = new ProgressBar();
             ((System.ComponentModel.ISupportInitialize)numMaxAge).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numMinAge).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dgvPeople).BeginInit();
@@ -58,18 +59,18 @@
             txtFirstName.TabIndex = 0;
             txtFirstName.Text = "William";
             // 
-            // button1
+            // btnSearch
             // 
-            button1.BackColor = Color.White;
-            button1.ForeColor = Color.Black;
-            button1.Location = new Point(1394, 179);
-            button1.Margin = new Padding(4);
-            button1.Name = "button1";
-            button1.Size = new Size(106, 35);
-            button1.TabIndex = 1;
-            button1.Text = "Sök";
-            button1.UseVisualStyleBackColor = false;
-            button1.Click += btnSearch_Click;
+            btnSearch.BackColor = Color.White;
+            btnSearch.ForeColor = Color.Black;
+            btnSearch.Location = new Point(1394, 179);
+            btnSearch.Margin = new Padding(4);
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(106, 35);
+            btnSearch.TabIndex = 1;
+            btnSearch.Text = "Sök";
+            btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtLog
             // 
@@ -190,6 +191,16 @@
             dgvPeople.RowHeadersWidth = 62;
             dgvPeople.Size = new Size(982, 536);
             dgvPeople.TabIndex = 13;
+            //
+            // progressBar
+            //
+            progressBar.Location = new System.Drawing.Point(12, 556);
+            progressBar.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Bottom;
+            progressBar.Name = "progressBar";
+            progressBar.Size = new System.Drawing.Size(1480 - 24, 20);
+            progressBar.Style = ProgressBarStyle.Marquee;
+            progressBar.MarqueeAnimationSpeed = 0;
+            progressBar.Visible = false;
             // 
             // Form1
             // 
@@ -208,8 +219,9 @@
             Controls.Add(numMaxAge);
             Controls.Add(txtLocation);
             Controls.Add(txtLog);
-            Controls.Add(button1);
+            Controls.Add(btnSearch);
             Controls.Add(txtFirstName);
+            Controls.Add(progressBar);
             ForeColor = Color.FromArgb(255, 128, 0);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4);
@@ -225,7 +237,7 @@
         #endregion
 
         private System.Windows.Forms.TextBox txtFirstName;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txtLog;
         private System.Windows.Forms.TextBox txtLocation;
         private System.Windows.Forms.NumericUpDown numMaxAge;
@@ -237,5 +249,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtLastName;
         private System.Windows.Forms.DataGridView dgvPeople;
+        private ProgressBar progressBar;
     }
 }
